@@ -1,6 +1,6 @@
 package com.Mackenzie.Chute_Sal.Models;
 
-
+    
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,17 +19,26 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="time")
-public class Time {
+@Table(name="jogo")
+public class Jogo {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nome;
+    @ManyToOne
+    private Time time1;
+    @ManyToOne
+    private Time time2;
+    private int pontTime1;
+    private int pontTime2;
+    private String data;
+    private String hora;
+    private String Status;
+    @ManyToOne
+    private Time vencedor;
     @ManyToOne
     private Campeonato campeonato;
 
 
-    
+
+
 }
-
-

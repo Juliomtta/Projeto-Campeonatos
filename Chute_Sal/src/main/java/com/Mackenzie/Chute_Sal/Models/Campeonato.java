@@ -1,7 +1,11 @@
 package com.Mackenzie.Chute_Sal.Models;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,14 +17,19 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name="campeonato")
 public class Campeonato {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
     private String nome;
-    private int unidade;
     private String iniciInscri;
     private String fimInscri;
     private String inicJogos;
     private String fimJogos;
     private String inicDivulg;
     private String status;
-    private List<Integer> times = new ArrayList<Integer>();
+
+    
 }

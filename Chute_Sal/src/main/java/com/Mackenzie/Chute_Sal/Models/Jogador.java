@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +29,8 @@ public class Jogador {
     private String apelido;
     private String telefone;
     private String dt_nasc;
-    @ManyToOne()
-    private Time time;
     private boolean escalado;
+    @ManyToOne
+    private Time time;
+
 }

@@ -5,17 +5,19 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Mackenzie.Chute_Sal.Models.UnidadeEscolar;
 import com.Mackenzie.Chute_Sal.Repositories.UnidadeRepository;
+
 
 @RestController
 @RequestMapping("/unidade")
@@ -38,20 +40,29 @@ public class UnidadeController {
         return  unidadeRepository.findAll();
         
     }
-    @GetMapping("/{numero}")
-    public Optional<UnidadeEscolar> unidade(@PathVariable("numero") Long numero){
+    @GetMapping("/{id}")
+    public Optional<UnidadeEscolar> unidade(@RequestBody Long numero){
         return unidadeRepository.findById(numero);
     }
 
-    @DeleteMapping("/{numero}")
+    @DeleteMapping("/")
     public void deletaUnidade(@PathVariable("numero") Long numero){
         unidadeRepository.deleteById(numero);
     }
-/*
-    @PatchMapping("/")
-    public UnidadeEscolar atualizaUnidade(@RequestBody UnidadeEscolar unidade){
-        unidadeRepository.
+
+    @PutMapping("/")
+    public ResponseEntity atualizaUnidade(@RequestBody UnidadeEscolar unidade){
+        UnidadeEscolar unidadeAtu =  new UnidadeEscolar();
+        unidadeAtu.setNome(unidade.getNome());
+        unidadeAtu.setNumero(unidade.getNumero());
+        unidadeAtu.setLogadouro(unidade.getLogadouro());
+        unidadeAtu.setNro_endereco(unidade.getNro_endereco());
+        unidadeAtu.setBairro(unidade.getBairro());
+        unidadeAtu.setCidade(unidade.getCidade());
+        unidadeAtu.setEstado(unidade.getEstado());
+        unidadeRepository.save(unidadeAtu);
+        return ResponseEntity.ok().body(unidadeAtu);
     }
-*/
+
 
 }

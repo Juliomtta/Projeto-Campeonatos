@@ -6,15 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import com.Mackenzie.Chute_Sal.Models.Manager;
+import com.Mackenzie.Chute_Sal.Repositories.ManagerRepository;
 
 
 
@@ -22,29 +28,41 @@ import com.Mackenzie.Chute_Sal.Models.Manager;
 @RequestMapping("/manager")
 public class ManagerController {
     
-    
-    private List<Manager> managerList = new ArrayList<Manager>();
+    @Autowired
+    ManagerRepository managerRepository;
     
 
     @GetMapping("/")
     public List<Manager> manager(){
-        return  managerList;
+        return  managerRepository.findAll();
     }
     @GetMapping("/{id}")
-    public Manager manager(@PathVariable("id") long id){
+    public Optional<Manager> manager(@PathVariable("id") long id){
         
-        Optional<Manager> managerFind = managerList.stream().filter(manager -> manager.getId() == id).findFirst();
-        
-        if(managerFind.isPresent()){
-            return managerFind.get();
-        }
-        return null;
+         return managerRepository.findById(id);
+
     } 
 
 
     @PostMapping("/")
     public void manager(@RequestBody Manager manager){
-        managerList.add(manager);
+        managerRepository.save(manager);
         
+    }
+
+    @DeleteMapping("/")
+    public void deleteManager(@RequestBody Long id){
+        managerRepository.deleteById(id);
+        
+        
+    }
+
+    @PutMapping("/")
+    public ResponseEntity atualizaManager(@RequestBody Manager manager){
+        managerRepository.save(manager);
+
+        return ResponseEntity.ok().body(manager);
+
+
     }
 }

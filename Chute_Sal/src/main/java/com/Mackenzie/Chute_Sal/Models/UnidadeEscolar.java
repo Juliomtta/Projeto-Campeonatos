@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -23,6 +24,13 @@ public class UnidadeEscolar {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long numero;
     private String nome;
+    private String logadouro;
+    private String nro_endereco;
+    private String bairro;
+    private String cidade;
+    private String estado;
+
+    
     
 
 }
