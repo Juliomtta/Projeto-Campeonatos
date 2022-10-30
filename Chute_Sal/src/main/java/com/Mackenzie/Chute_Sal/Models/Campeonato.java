@@ -1,10 +1,13 @@
 package com.Mackenzie.Chute_Sal.Models;
 
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -24,12 +27,14 @@ public class Campeonato {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String nome;
-    private String iniciInscri;
-    private String fimInscri;
-    private String inicJogos;
-    private String fimJogos;
-    private String inicDivulg;
+    private Date iniciInscri;
+    private Date fimInscri;
+    private Date inicJogos;
+    private Date fimJogos;
+    private Date inicDivulg;
     private String status;
+    @ManyToOne
+    private UnidadeEscolar unidade;
 
     
 }

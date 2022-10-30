@@ -7,3 +7,4 @@ import com.Mackenzie.Chute_Sal.Models.UnidadeEscolar;
 public interface UnidadeRepository extends JpaRepository<UnidadeEscolar, Long> {
     
 }
+ 

@@ -35,9 +35,9 @@ public class jogadorController {
     }
 
     @PostMapping("/")
-    public ResponseEntity jogador(@RequestBody Jogador jogador){
+    public String jogador(Jogador jogador){
         jogadorRepository.save(jogador);
-        return ResponseEntity.ok().body(jogador);
+        return "Manager/criarJogador";
     }
     @DeleteMapping("/")
     public ResponseEntity deleteJogador(@RequestBody Jogador jogador){

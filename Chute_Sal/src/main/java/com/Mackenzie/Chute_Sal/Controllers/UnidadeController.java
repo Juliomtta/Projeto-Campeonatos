@@ -1,6 +1,7 @@
 package com.Mackenzie.Chute_Sal.Controllers;
 
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -14,10 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 
 import com.Mackenzie.Chute_Sal.Models.UnidadeEscolar;
 import com.Mackenzie.Chute_Sal.Repositories.UnidadeRepository;
-
 
 @RestController
 @RequestMapping("/unidade")
@@ -27,7 +28,7 @@ public class UnidadeController {
     UnidadeRepository unidadeRepository;
 
 
-
+ 
     
     @PostMapping("/")
     public UnidadeEscolar unidade(@RequestBody UnidadeEscolar unidade){
@@ -37,15 +38,15 @@ public class UnidadeController {
 
     @GetMapping("/")
     public List<UnidadeEscolar> unidade(){
-        return  unidadeRepository.findAll();
-        
+        return unidadeRepository.findAll();
     }
-    @GetMapping("/{id}")
-    public Optional<UnidadeEscolar> unidade(@RequestBody Long numero){
+
+    @GetMapping("/{numero}")
+    public Optional<UnidadeEscolar> unidade(@PathVariable("numero") long numero){
         return unidadeRepository.findById(numero);
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/{numero}")
     public void deletaUnidade(@PathVariable("numero") Long numero){
         unidadeRepository.deleteById(numero);
     }

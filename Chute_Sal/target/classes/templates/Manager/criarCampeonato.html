@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Campeonato</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</head>
+<body class="container">
+    <h2>Cadastrar novo campeonato</h2>
+    <br>
+    <form class="row justify-content-md-center" method="POST" action="/campeonatos/manager/">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Nome do Campeonato</label>
+          <input type="text" class="form-control" id="nome" name="nome" >
+          
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Inicio da divulgação</label>
+            <input type="text" class="form-control" id="inicDivulg" name="inicDivulg"  placeholder="__ /__ /____">
+            
+          </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Inicio das inscrições</label>
+            <input type="text" class="form-control" id="iniciInscri" name="iniciInscri"  placeholder="__ /__ /____">
+            
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Fim das inscrições</label>
+            <input type="text" class="form-control" id="fimInscri" name="fimInscri"  placeholder="__ /__ /____">
+            
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Inicio dos jogos</label>
+            <input type="text" class="form-control" id="inicJogos" name="inicJogos"  placeholder="__ /__ /____">
+            
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Fim dos jogos</label>
+            <input type="text" class="form-control" id="fimJogos" name="fimJogos"  placeholder="__ /__ /____">
+            
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Status do campeonato</label>
+            <input type="text" class="form-control" id="status" name="status" >
+            
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Unidade Escolar</label>
+            <input type="text" class="form-control" id="unidade" name="unidade" >
+            
+          </div>
+
+          
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+      </form>
+</body>
+</html>
