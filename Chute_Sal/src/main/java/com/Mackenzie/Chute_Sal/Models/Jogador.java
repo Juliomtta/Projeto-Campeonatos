@@ -30,7 +30,7 @@ public class Jogador {
     private String telefone;
     private String dt_nasc;
     private boolean escalado;
-    private String Usuario;
+    private String usuario;
     private String senha;
     @ManyToOne
     private Time time;  

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,14 +36,14 @@ public class jogadorController {
     }
 
     @PostMapping("/")
-    public String jogador(Jogador jogador){
+    public Jogador  jogador(@RequestBody Jogador jogador){
         jogadorRepository.save(jogador);
-        return "Manager/criarJogador";
+        return jogador;
     }
-    @DeleteMapping("/")
-    public ResponseEntity deleteJogador(@RequestBody Jogador jogador){
-        jogadorRepository.deleteById(jogador.getId());
-        return ResponseEntity.ok().body(jogador);   
+    @DeleteMapping("/{id}")
+    public void deleteJogador(@PathVariable("id") Long id){
+        jogadorRepository.deleteById(id);
+       
     }
     
     @PutMapping("/")
