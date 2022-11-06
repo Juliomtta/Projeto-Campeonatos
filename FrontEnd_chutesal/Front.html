@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="  CSS/style.css">
+<link rel="stylesheet" type="text/css" href="  CSS/manager.css">
+
+
+
+
+ <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="CSS/styleCad.css">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css"> -->
+    <script src="JS/api.js"></script>
+
+</head>
+
+
+
+
+    <nav class="navbar navbar-expand-lg naveg bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><h4>Escola Chutesal</h4></a>
+        
+          <div class="collapse navbar-collapse menu" id="navbarText">
+            <ul class="navbar-nav ml-lg-3 mb-lg-0">
+              
+              
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+
+
+      <!--Conteudo da pagina-->
+
+
+      <nav class="nav_tabs">
+        <ul>
+            <!-- Aba Campeonato-->
+            <li>
+                
+                <input type="radio" id="tab1" class="rd_tab" name="tabs" checked>
+                <label for="tab1" class="tab_label">Campeonato</label>
+                <div class="tab-content">
+                    
+                    <h2>Criar Campeonato</h2>
+                    <article>
+                    <form>
+                            <label for="nome">Nome do Campeonato</label> 
+                            <input type="text" name="nomeCamp" id="nomeCamp" size="30" maxlength="100" required autofocus placeholder=" Insira o nome">
+                
+                        
+                            <label for="dataInscricao">Data de inicio das inscrições:</label> 
+                            <p><input type="date" name="dataInscricao" id="dataInscricao" size="30" maxlength="60"></p>
+    
+                            <label for="dataInscricao">Data de finalização das inscrições:</label> 
+                            <p><input type="date" name="dataFimInscricao" id="dataFimInscricao" size="30" maxlength="60"></p>
+    
+                            <label for="data">Data de inicio dos jogos:</label> 
+                            <p><input type="date" name="dataInicJogos" id="dataInicJogos" size="30" maxlength="60"></p>
+    
+                            <label for="data">Data de finalização dos jogos:</label> 
+                            <p><input type="date" name="dataFimcJogos" id="dataFimJogos" size="30" maxlength="60"></p>
+                            
+                        
+                            <label for="data">Data da Divulgação:</label> 
+                            <input type="date" name="dataDivulgacao" id="dataDivulgacao" sizedata="30" maxlength="60">
+                            
+                        
+                            
+                            <button type="button" class="btn btn-primary" onclick="campeonatos()">Cadastrar</button>
+                            
+                
+                 </form>
+        
+                    </article>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="tabs" class="rd_tab" id="tab2">
+                <label for="tab2" class="tab_label">Time</label>
+                <div class="tab-content">
+                    <h2>Cadastrar Time</h2>
+                    <article>
+                 <form action="destino.html" method="post">
+                 <label for="nome">Nome</label> 
+                 <input type="text" name="nome" id="nome" size="30" maxlength="100" required autofocus placeholder=" Insira o nome">
+        
+                 <label for="unidade">Unidade</label> 
+                 <input type="text" name="unidade" id="unidade" size="30" maxlength="100" required placeholder=" Insira a Unidade">
+                
+                <label for="data">Quantidade de Jogadores:</label> 
+                <input type="number" name="quantidade" id="quantidade" min="1" max="5">
+                
+    
+                <input type="submit" values"cadastrar" id"cadastrar">
+                
+                 </form> 
+                    </article>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="tabs" class="rd_tab" id="tab3">
+                <label for="tab3" class="tab_label">Jogos</label>
+                <div class="tab-content">
+                    <h2>Cadastrar Jogos</h2>
+                    <article>
+                 <form action="destino.html" method="post">
+                 <label for="time">Time 1 </label> 
+                 <input type="text" name="time1" id="time1" size="30" maxlength="100" required autofocus placeholder=" Insira o time 1">
+        
+                 <label for="time">Time 2 </label> 
+                 <input type="text" name="time2" id="time2" size="30" maxlength="100" required autofocus placeholder=" Insira o time 2">
+                
+                 <label for="data">Data:</label> 
+                 <p><input type="date" name="data" id="data" size="30" maxlength="60"></p>
+                
+                 <label for="campionato">Campeonato</label> 
+                 <input type="text" name="campeonato" id="campeonato" size="30" maxlength="100" required>
+    
+                <input type="submit" values"cadastrar" id"cadastrar">
+                
+                </form>
+                    </article>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="tabs" class="rd_tab" id="tab4">
+                <label for="tab4" class="tab_label">Unidade</label>
+                <div class="tab-content">
+                    <h2>Unidade</h2>
+                    <article>
+                 <form action="destino.html" method="post">
+                 <label for="time">Cadastrar Unidade</label> 
+                 <input type="text" name="cadastrar" id="cadastrar" size="30" maxlength="100" required autofocus placeholder=" Insira o nome da unidade">
+        
+                 <label for="time">Endereço</label> 
+                 <input type="text" name="endereco" id="endereco" size="30" maxlength="100" required autofocus placeholder=" Insira o endereço">
+                
+                 <button type="button" onclick="alert('Dados Enviado com sucesso')" class="estilo">Cadastrar</button><br><br>
+                
+                  </form>
+                    </article>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <body>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+
+</html>

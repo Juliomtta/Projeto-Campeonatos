@@ -1,0 +1,107 @@
+html {
+	background-color:#F4F4F4;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+
+}
+
+
+h2 {
+	
+	font-size:30px;
+	letter-spacing:-0.05em;
+	margin:2px 0 15px;
+
+}
+
+input {
+	display:block;
+	margin-bottom:20px;
+	border:1px solid #999;
+	padding:8px;
+    border-radius:3px;
+}
+
+input:focus {
+	border:1px solid #ccc;
+	outline:none;
+}
+
+input[type=submit] {
+	width:100px;
+	color:#FFF;
+	background:linear-gradient(top, #F33, #933 );
+	background:-webkit-linear-gradient(top, #F33, #933 );
+	background:-moz-linear-gradient(top, #F33, #933 );
+	border:1px solid #333;
+	cursor:pointer;
+}
+
+*{
+		margin: 0;
+		padding: 0;
+	}
+
+	
+
+	.nav_tabs{
+		width: 700px;
+		height: 500px;
+		margin: 0px auto;
+		background-color: #fff;
+		position: relative;
+	}
+
+	.nav_tabs ul{
+		list-style: none;
+	}
+
+	.nav_tabs ul li{
+		float: left;
+	}
+
+	.tab_label{
+		display: block;
+		width: 174px;
+		background-color: #292b2c;
+		padding: 15px;
+		font-size: 20px;
+		color:#fff;
+		cursor: pointer;
+		text-align: left;
+        margin-left: -32px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+	}
+
+
+	.nav_tabs .rd_tab { 
+	display:none;
+	position: absolute;
+}
+
+.nav_tabs .rd_tab:checked ~ label { 
+	background-color: #0059ff;
+	color:#fff;}
+
+.tab-content{
+	border-top: solid 5px #0059ff;
+	background-color: #fff;
+	display: none;
+	position: absolute;
+	height: 320px;
+	width: 600px;
+	left: 0;	
+}
+
+.rd_tab:checked ~ .tab-content{
+	display: block;
+}
+.tab-content h2{
+	padding: 10px;
+	color: #87d3b7;
+}
+.tab-content article{
+	padding: 10px;
+	color: #555;
+}
+
