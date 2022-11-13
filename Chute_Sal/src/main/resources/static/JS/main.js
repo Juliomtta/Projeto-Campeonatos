@@ -3,7 +3,7 @@ console.log("teste")
 
 function consultar(){
 
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/campeonatos/')
+    fetch('http://localhost:8081/campeonatos/')
     .then(data => {
     return data.json();
     })
