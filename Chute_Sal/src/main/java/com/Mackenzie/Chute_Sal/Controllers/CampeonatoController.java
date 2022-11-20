@@ -61,7 +61,7 @@ public class CampeonatoController {
         campAtu.setNome(campeonato.getNome());
         campAtu.setIniciInscri(campeonato.getIniciInscri());
         campAtu.setFimInscri(campeonato.getFimInscri());
-        campAtu.setFimJogos(campeonato.getinicJogos());
+        campAtu.setInicJogos(campeonato.getInicJogos());
         campAtu.setFimJogos(campeonato.getFimJogos());
         campAtu.setInicDivulg(campeonato.getInicDivulg());
         campAtu.setStatus(campeonato.getStatus());
