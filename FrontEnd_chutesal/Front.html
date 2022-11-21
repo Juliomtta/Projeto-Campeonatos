@@ -6,9 +6,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="  CSS/style.css">
 <link rel="stylesheet" type="text/css" href="  CSS/manager.css">
+<script src="JS/main.js"></script>
 
-
-
+<!-- our project just needs Font Awesome Solid + Brands -->
+<link href="CSS/fontawesome-free-6.2.0-web/css/fontawesome.css" rel="stylesheet">
+<link href="CSS/fontawesome-free-6.2.0-web/css/brands.css" rel="stylesheet">
+<link href="CSS/fontawesome-free-6.2.0-web/css/solid.css" rel="stylesheet">
 
  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="CSS/styleCad.css">
@@ -46,86 +49,300 @@
                 <input type="radio" id="tab1" class="rd_tab" name="tabs" checked>
                 <label for="tab1" class="tab_label">Campeonato</label>
                 <div class="tab-content">
+
+
+                    <!-- Botão ara criar novo campeonato-->
+
+                    <div class="campeonatos mt-4">
+                        <table class="table table-striped" >
+                          <tbody id="table">
+                            <tr class="table-dark">
+                              <th class="inic">Campeonato</th>
+                              <th>Data de Inicio</th>
+                              <th>Data Final</th>
+                              <th>Status</th>
+                              <th></th>
+                              <th class="fim">      </th>
+                            </tr>
+                            
+                        </tbody>
+                        </table>
+                      </div>
+
+                    <button type="button" class="btn btn-primary mt-2 novoc fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Novo Campeonato
+                    </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Novo Campeonato</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!--Formulario de cadastro de campeonato (modal)-->
+                            
+                                <form>
+                                    <label for="nome">Nome do Campeonato</label> 
+                                    <input class="inputform" type="text" name="nomeCamp" id="nomeCamp" size="30" maxlength="100" required autofocus placeholder=" Insira o nome">
+                                    
+                                    <p>Período de incrições:</p>
+                                    <div class="flex">
+                                        
+                                        <p><input type="date" name="dataInscricao" id="dataInscricao" size="30" maxlength="60"></p>
+                
+                                        <label for="dataInscricao">Até:</label> 
+                                        <p><input type="date" name="dataFimInscricao" id="dataFimInscricao" size="30" maxlength="60" class></p>
+                                    
+                                    </div>
+
+                                    <p>Período de jogos:</p>
+                                    <div class="flex">
+                                    
+                                    <p><input type="date" name="dataInicJogos" id="dataInicJogos" size="30" maxlength="60"></p>
+            
+                                    <label for="data">Até:</label> 
+                                    <p><input type="date" name="dataFimJogos" id="dataFimJogos" size="30" maxlength="60"></p>
+                                    
+                                    </div>
+                                    <label for="data">Data da Divulgação:</label> 
+                                    <input type="date" name="dataDivulgacao" id="dataDivulgacao" sizedata="30" maxlength="60" class="inputform">
+                                    
+                        
+                            </form>
+
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                              <button type="submit" class="btn btn-success" onclick="campeonatos()">Cadastrar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
+                      <!-- Editando campeonato existente-->
+                      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Campeonato</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!--Formulario de cadastro de campeonato (modal)-->
+                            
+                                <form>
+                                    <label for="nome">Nome do Campeonato</label> 
+                                    <input class="inputform" type="text" name="nomeCampe" id="nomeCampe" size="30" maxlength="100" required autofocus placeholder=" Insira o nome">
+                                    
+                                    <p>Período de incrições:</p>
+                                    <div class="flex">
+                                        
+                                        <p><input type="date" name="dataInscricao" id="dataInscricaoe" size="30" maxlength="60"></p>
+                
+                                        <label for="dataInscricao">Até:</label> 
+                                        <p><input type="date" name="dataFimInscricao" id="dataFimInscricaoe" size="30" maxlength="60" class></p>
+                                    
+                                    </div>
+
+                                    <p>Período de jogos:</p>
+                                    <div class="flex">
+                                    
+                                    <p><input type="date" name="dataInicJogos" id="dataInicJogose" size="30" maxlength="60"></p>
+            
+                                    <label for="data">Até:</label> 
+                                    <p><input type="date" name="dataFimJogos" id="dataFimJogose" size="30" maxlength="60"></p>
+                                    
+                                    </div>
+                                    <label for="data">Data da Divulgação:</label> 
+                                    <input type="date" name="dataDivulgacao" id="dataDivulgacaoe" sizedata="30" maxlength="60" class="inputform">
+                                    <label for="data">Status:</label> 
+                                    <select id="selected" class="form-select form-select-sm" aria-label=".form-select-sm example" >
+                                      <option selected id="selected"></option>
+                                      <option value="1">PLANEJADO</option>
+                                      <option value="2">EM ANDAMENTO</option>
+                                      <option value="3">CANCELADO</option>
+                                      <option value="3">EXECUTADO</option>
+                                    </select>
+                                    
+                        
+                            </form>
+
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                              <button type="submit" class="btn btn-success" id="salvar">Salvar</button>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+
+
+
+
+                      </div>
                     
-                    <h2>Criar Campeonato</h2>
-                    <article>
-                    <form>
-                            <label for="nome">Nome do Campeonato</label> 
-                            <input type="text" name="nomeCamp" id="nomeCamp" size="30" maxlength="100" required autofocus placeholder=" Insira o nome">
-                
-                        
-                            <label for="dataInscricao">Data de inicio das inscrições:</label> 
-                            <p><input type="date" name="dataInscricao" id="dataInscricao" size="30" maxlength="60"></p>
-    
-                            <label for="dataInscricao">Data de finalização das inscrições:</label> 
-                            <p><input type="date" name="dataFimInscricao" id="dataFimInscricao" size="30" maxlength="60"></p>
-    
-                            <label for="data">Data de inicio dos jogos:</label> 
-                            <p><input type="date" name="dataInicJogos" id="dataInicJogos" size="30" maxlength="60"></p>
-    
-                            <label for="data">Data de finalização dos jogos:</label> 
-                            <p><input type="date" name="dataFimcJogos" id="dataFimJogos" size="30" maxlength="60"></p>
-                            
-                        
-                            <label for="data">Data da Divulgação:</label> 
-                            <input type="date" name="dataDivulgacao" id="dataDivulgacao" sizedata="30" maxlength="60">
-                            
-                        
-                            
-                            <button type="button" class="btn btn-primary" onclick="campeonatos()">Cadastrar</button>
-                            
-                
-                 </form>
-        
-                    </article>
                 </div>
             </li>
+            <!-- ------------- Time ---------------------->
             <li>
                 <input type="radio" name="tabs" class="rd_tab" id="tab2">
                 <label for="tab2" class="tab_label">Time</label>
-                <div class="tab-content">
-                    <h2>Cadastrar Time</h2>
-                    <article>
-                 <form action="destino.html" method="post">
-                 <label for="nome">Nome</label> 
-                 <input type="text" name="nome" id="nome" size="30" maxlength="100" required autofocus placeholder=" Insira o nome">
-        
-                 <label for="unidade">Unidade</label> 
-                 <input type="text" name="unidade" id="unidade" size="30" maxlength="100" required placeholder=" Insira a Unidade">
-                
-                <label for="data">Quantidade de Jogadores:</label> 
-                <input type="number" name="quantidade" id="quantidade" min="1" max="5">
-                
-    
-                <input type="submit" values"cadastrar" id"cadastrar">
-                
-                 </form> 
-                    </article>
+                <div class="tab-content ">
+                  <ul class="list-group text-center" id="times">
+                    <li class="list-group-item mt-2">
+                      
+                    </li>
+                    <div class="modal fade" id="editTime" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Novo Campeonato</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <!--Formulario de cadastro de time (modal)-->
+                          
+                              <form>
+                                  <label for="nome">Nome do Time</label> 
+                                  <input class="inputform" type="text"  id="nomeTimee" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                  
+                                  <label for="nome">Campeonato</label> 
+                                  <select id="menuC" class="form-select form-select-sm" aria-label=".form-select-sm example" >
+                                    
+                                  </select>
+                              </form>
+  
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" id="salvarTime" class="btn btn-success">Salvar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ul>
+                  
+                  <button type="button" class="btn btn-primary mt-2 novoc fw-bold" data-bs-toggle="modal" data-bs-target="#novoTime">
+                    Novo Time
+                  </button>
+                  <div class="modal fade" id="novoTime" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Novo Campeonato</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!--Formulario de cadastro de campeonato (modal)-->
+                        
+                            <form>
+                                <label for="nome">Nome do Time</label> 
+                                <input class="inputform" type="text"  id="nomeTime" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                
+                                <label for="nome">Campeonato</label> 
+                                <select id="menuCamp" class="form-select form-select-sm" aria-label=".form-select-sm example" >
+                                 
+                                </select>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                          <button type="submit" class="btn btn-success" onclick="cadastrarTime()">Cadastrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
                 </div>
             </li>
+
+
+
+            <!------------------------------- Jogos  --------------------------------->
             <li>
                 <input type="radio" name="tabs" class="rd_tab" id="tab3">
                 <label for="tab3" class="tab_label">Jogos</label>
                 <div class="tab-content">
-                    <h2>Cadastrar Jogos</h2>
-                    <article>
-                 <form action="destino.html" method="post">
-                 <label for="time">Time 1 </label> 
-                 <input type="text" name="time1" id="time1" size="30" maxlength="100" required autofocus placeholder=" Insira o time 1">
-        
-                 <label for="time">Time 2 </label> 
-                 <input type="text" name="time2" id="time2" size="30" maxlength="100" required autofocus placeholder=" Insira o time 2">
-                
-                 <label for="data">Data:</label> 
-                 <p><input type="date" name="data" id="data" size="30" maxlength="60"></p>
-                
-                 <label for="campionato">Campeonato</label> 
-                 <input type="text" name="campeonato" id="campeonato" size="30" maxlength="100" required>
-    
-                <input type="submit" values"cadastrar" id"cadastrar">
-                
-                </form>
-                    </article>
+                  <table class="table table-striped mt-4" >
+                    <tbody id="tableJogo">
+                      <tr class="table-dark">
+                        <th class="inic">Time 1</th>
+                        <th>Time 2</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Vencedor</th>
+                        <th></th>
+                        <th class="fim">      </th>
+                      </tr>
+                      
+                  </tbody>
+                  </table>
+                  <button type="button" class="btn btn-primary mt-2 novoc fw-bold" data-bs-toggle="modal" data-bs-target="#novoJogo">
+                    Novo Jogo
+                  </button>
+                  <div class="modal fade" id="novoJogo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Novo Campeonato</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!--Formulario de cadastro de Jogos (modal)-->
+                        
+                            <form>
+                                <label for="nome">Nome do Time 1</label> 
+                                <select id="time1" class="form-select form-select-sm" aria-label=".form-select-sm example" >
+                                  <option></option>
+                                </select>
+
+                                <label for="nome">Nome do Time 2</label> 
+                                <select id="time2" class="form-select form-select-sm" aria-label=".form-select-sm example" >
+                                 <option></option>
+                                </select>
+
+                                <label for="dataJogo">data</label> 
+                                <input class="inputform" type="date"  id="dataJogo" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                
+                                <label for="horaJogo">hora</label> 
+                                <input class="inputform" type="text"  id="horaJogo" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                
+                                <label for="pont1">Pontos do Time 1</label> 
+                                <input class="inputform" type="text"  id="pont1" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                
+                                <label for="pont2">Pontos do Time 2</label> 
+                                <input class="inputform" type="text"  id="pont2" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                
+                                <label for="vencedor">Vencedor</label> 
+                                <select id="vencedor" class="form-select form-select-sm" aria-label=".form-select-sm example" >
+                                 <option></option>
+                                </select>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                          <button type="submit" class="btn btn-success" onclick="cadastrarJogo()">Cadastrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
             </li>
             <li>
