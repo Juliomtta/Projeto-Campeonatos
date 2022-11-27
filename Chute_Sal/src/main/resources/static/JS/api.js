@@ -31,19 +31,13 @@ let par = {
     headers: {"Content-type": "application/json"}
     }
 
-fetch('http://ec2-3-93-76-13.compute-1.amazonaws.com:8081/jogador/', par)
+fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/jogador/', par)
 .then(response => response.json())
 .then(json => console.log(json))
 .catch(err => console.log(err));
 
 
 
-nomeForm.value = "";
-apelidoForm.value = "";
-telefoneForm.value = "";
-dt_nascForm.value = "";
-usuarioForm.value = "";
-senhaForm.value = "";
 
 }
 
@@ -65,7 +59,7 @@ function campeonatos(){
     let dataInicJogos = document.getElementById('dataInicJogos').value;
     let dataFimJogos = document.getElementById('dataFimJogos').value;
     let dataDiv = document.getElementById('dataDivulgacao').value;
-    let status = document.getElementById('status').value;
+    
     
 
     
@@ -76,7 +70,7 @@ function campeonatos(){
         "inicJogos" : dataInicJogos,
         "fimJogos" : dataFimJogos,
         "inicDivulg" : dataDiv,
-        "status" : "PLANEJADO"
+        "status" : "Planejado"
     }
     
     console.log(campeonato)
@@ -88,41 +82,291 @@ function campeonatos(){
         headers: {"Content-type": "application/json"}
         }
     
-    fetch('http://ec2-3-93-76-13.compute-1.amazonaws.com:8081/campeonatos/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/campeonatos/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
 
-   
+    alert("Campeonato Cadastrado!")
+    window.location.reload();
     
 }
 
-//---------------------------------------------------------------------------
 
-function time(){
 
-    let nomeForm = document.getElementById('nome').value;
-    let apelidoForm = document.getElementById('unidade').value;
-    let telefoneForm = document.getElementById('quantidade').value;
+
+/*deletar campeonato*/
+function deleteCampeonato(id){
+    
+    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/campeonatos/'+id, { method: 'DELETE' })
+    .then();
+    alert('Campeonato Deletado')
+    window.location.reload();
+}
+
+function editar(id){
+    let editid = id
+
+    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/campeonatos/'+editid)
+    .then(data => {
+    return data.json();
+    })
+    .then(post => {
+        
+        document.getElementById('nomeCampe').value = post.nome
+        document.getElementById('dataInscricaoe').value = ajustaData2(post.iniciInscri)
+        document.getElementById('dataFimInscricaoe').value = ajustaData2(post.fimInscri)
+        document.getElementById('dataInicJogose').value = ajustaData2(post.inicJogos)
+        document.getElementById('dataFimJogose').value = ajustaData2(post.fimJogos)
+        document.getElementById('dataDivulgacaoe').value = ajustaData2(post.inicDivulg)
+        document.getElementById('selected').innerHTML = post.status
+        
+    });
+
+    let btn = document.getElementById("salvar")
+    btn.onclick = function editCampeonato(id){
+    let nome = document.getElementById('nomeCampe').value;
+    let dataInsc = document.getElementById('dataInscricaoe').value;
+    let dataFimInsc = document.getElementById('dataFimInscricaoe').value;
+    let dataInicJogos = document.getElementById('dataInicJogose').value;
+    let dataFimJogos = document.getElementById('dataFimJogose').value;
+    let dataDiv = document.getElementById('dataDivulgacaoe').value;
+    let numero = document.getElementById('slc').value
+    let stat = document.getElementById(numero).innerHTML
+
+    
+
+  
+        if (numero.length == 1){
+            console.log(document.getElementById(numero).innerHTML)
+        }
+        else{
+            console.log(document.getElementById('slc').value)
+        }
     
     
-    console.log(nomeForm)
     
-    let jogador =  {
-        "nome": nomeForm,
-        "unidade": apelidoForm,
-        "quantidade": telefoneForm,
+
+    
+    let campeonatoe =  {
+        "id" : editid,
+        "nome" : nome,
+        "iniciInscri" : dataInsc,
+        "fimInscri" : dataFimInsc,
+        "inicJogos" : dataInicJogos,
+        "fimJogos" : dataFimJogos,
+        "inicDivulg" : dataDiv,
+        "status" : stat
     }
     
-    console.log(jogador)
+    console.log(campeonatoe)
     
     
     let par = {
+        method: "PUT",
+        body: JSON.stringify(campeonatoe),
+        headers: {"Content-type": "application/json"}
+        }
+        console.log(par)
+    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/campeonatos/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+
+    alert("Campeonato Atualizado!")
+    window.location.reload();
+    
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------Time -----------------------------
+
+function cadastrarTime(){
+    let nome = document.getElementById('nomeTime').value;
+    let camp = document.getElementById('menuCamp').value;
+
+    
+
+    
+    let time =  {
+        "nome" : nome,
+        "campeonato" :  { 
+            "id": camp
+        }
+ 
+    }
+
+    let par = {
         method: "POST",
-        body: JSON.stringify(jogador),
+        body: JSON.stringify(time),
         headers: {"Content-type": "application/json"}
         }
     
-    fetch('http://ec2-3-93-76-13.compute-1.amazonaws.com:8081/time/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/time/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+
+    alert("Time Cadastrado!")
+    window.location.reload();
+    
+    
+
+
+}
+
+function deleteTime(id){
+    
+    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/time/'+id, { method: 'DELETE' })
+    .then();
+    alert('Time Deletado')
+    window.location.reload();
+}
+
+function editTime(id){
+    let editid = id
+
+    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/time/'+editid)
+    .then(data => {
+    return data.json();
+    })
+    .then(post => {
+        
+        document.getElementById('nomeTimee').value = post.nome
+        document.getElementById('menuC').value = post.campeonato.id
+    });
+
+    let btn = document.getElementById("salvarTime")
+    btn.onclick = function editTime(){
+    let nome = document.getElementById('nomeTimee').value;
+    let camp = document.getElementById('menuC').value;
+
+    
+
+    
+    let time =  {
+        "id" : editid,
+        "nome" : nome,
+        "campeonato": { 
+            "id": '1'
+        }
+
+    }
+    
+
+    
+    
+    let par = {
+        method: "PUT",
+        body: JSON.stringify(time),
+        headers: {"Content-type": "application/json"}
+        }
+        console.log(time)
+    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/time/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+
+    alert("Time Atualizado!")
+    window.location.reload();
+    
+
+}
+
+}
+
+
+
+
+/* ------------------------------  jogo --------------------------*/
+function deleteJogo(id){
+    
+    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/jogo/'+id, { method: 'DELETE' })
+    .then();
+    alert('Jogo Deletado')
+    window.location.reload();
+}
+
+
+function cadastrarJogo(){
+    let time1 = document.getElementById('time1').value;
+    let time2 = document.getElementById('time2').value;
+    let data = document.getElementById('dataJogo').value;
+    let hora = document.getElementById('horaJogo').value;
+    let pont1 = document.getElementById('pont1').value;
+    let pont2 = document.getElementById('pont2').value;
+    let vencedor = document.getElementById('pont2').value;
+
+    
+
+    
+    let time =  {
+        "time1": {
+            "id" : time1
+        },
+        "time2": {
+            "id" : time2
+        },
+        "pontTime1": pont1,
+        "pontTime2": pont2,
+        "data": data,
+        "hora": hora,
+        "vencedor": {
+            "id" : vencedor
+        },
+        "campeonato": null,
+        "status": null
+    }
+    console.log(time)
+    
+
+    let par = {
+        method: "POST",
+        body: JSON.stringify(time),
+        headers: {"Content-type": "application/json"}
+        }
+    
+    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/time/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+
+    alert("Time Cadastrado!")
+    window.location.reload();
+    
+    
+
     
 }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //---------------------------------------------------------------------------
 
