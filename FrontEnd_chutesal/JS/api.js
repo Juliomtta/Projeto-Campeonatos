@@ -116,7 +116,8 @@ function editar(id){
         document.getElementById('dataInicJogose').value = ajustaData2(post.inicJogos)
         document.getElementById('dataFimJogose').value = ajustaData2(post.fimJogos)
         document.getElementById('dataDivulgacaoe').value = ajustaData2(post.inicDivulg)
-        document.getElementById('selected').value = post.status
+        document.getElementById('selected').innerHTML = post.status
+        
     });
 
     let btn = document.getElementById("salvar")
@@ -127,6 +128,19 @@ function editar(id){
     let dataInicJogos = document.getElementById('dataInicJogose').value;
     let dataFimJogos = document.getElementById('dataFimJogose').value;
     let dataDiv = document.getElementById('dataDivulgacaoe').value;
+    let numero = document.getElementById('slc').value
+    let stat = document.getElementById(numero).innerHTML
+
+    
+
+  
+        if (numero.length == 1){
+            console.log(document.getElementById(numero).innerHTML)
+        }
+        else{
+            console.log(document.getElementById('slc').value)
+        }
+    
     
     
 
@@ -139,7 +153,7 @@ function editar(id){
         "inicJogos" : dataInicJogos,
         "fimJogos" : dataFimJogos,
         "inicDivulg" : dataDiv,
-        "status" : "Planejado"
+        "status" : stat
     }
     
     console.log(campeonatoe)
