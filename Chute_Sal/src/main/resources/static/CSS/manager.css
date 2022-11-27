@@ -29,10 +29,7 @@ input:focus {
 input[type=submit] {
 	width:100px;
 	color:#FFF;
-	background:linear-gradient(top, #F33, #933 );
-	background:-webkit-linear-gradient(top, #F33, #933 );
-	background:-moz-linear-gradient(top, #F33, #933 );
-	border:1px solid #333;
+	
 	cursor:pointer;
 }
 
@@ -103,5 +100,21 @@ input[type=submit] {
 .tab-content article{
 	padding: 10px;
 	color: #555;
+}
+
+.flex{
+    display: flex;
+}
+
+#dataInscricao, #dataFimInscricao, #dataInicJogos, #dataFimJogos{
+	
+	margin-right: 10px;
+}
+#dataFimInscricao, #dataFimJogos, .butt{
+	margin-left: 10px;
+}
+
+.novoc{
+	margin-left: 50px;
 }
 
