@@ -8,7 +8,7 @@ function consultar(){
 
     /************************Campeonato**********************/
 
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/campeonatos/')
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/campeonatos/')
     .then(data => {
     return data.json();
     })
@@ -52,7 +52,7 @@ function consultar(){
 
     /************************Time**********************/
 
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/time/')
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/time/')
     .then(data => {
     return data.json();
     })
@@ -87,17 +87,58 @@ function consultar(){
     
     });
 
-    /************************jogo**********************/
+    /************************Jogador**********************/
 
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/jogo/')
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/jogador/')
     .then(data => {
     return data.json();
     })
     .then(post => {
     for(var i=0; i<post.length; i++){
 
-        console.log(post[i])
-        //console.log(post[i].time1.id)
+        
+        var linha = document.createElement("tr");
+        var  nome = "<td>"+post[i].nome+"</td>"
+        var  apelido = "<td>"+post[i].nome+"</td>"
+        var  time = "<td>"+post[i].hora+"</td>"
+        var  edit = '<td><button type="button" class="text-success" data-bs-toggle="modal" data-bs-target="#editModal"  onclick=editarJogador('+post[i].id+')><i class="fa-solid fa-pen-to-square"></i></button></td>'
+        var  del = '<td><button type="submit" class="text-danger" onclick="deleteJogador('+post[i].id+')"><i class="fa-solid fa-trash"></i></button></td>'
+        
+
+
+        linha.innerHTML += nome;
+        linha.innerHTML += apelido;
+        linha.innerHTML += time;
+        linha.innerHTML += edit;
+        linha.innerHTML += del;
+        document.getElementById("tableJogador").appendChild(linha);
+    }
+    
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /************************jogo**********************/
+
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/jogo/')
+    .then(data => {
+    return data.json();
+    })
+    .then(post => {
+    for(var i=0; i<post.length; i++){
+
+        
         var linha = document.createElement("tr");
         var  time1 = "<td>"+post[i].time1.nome+"</td>"
         var  time2 = "<td>"+post[i].time2.nome+"</td>"
@@ -121,6 +162,35 @@ function consultar(){
     
     });
 
+
+
+    /************************Unidade**********************/
+
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/unidade/')
+    .then(data => {
+    return data.json();
+    })
+    .then(post => {
+    for(var i=0; i<post.length; i++){
+
+        var linha = document.createElement("tr");
+        var  nome = "<td>"+post[i].nome+"</td>"
+        var  bairro = "<td>"+post[i].bairro+"</td>"
+        var  cid = "<td>"+post[i].cidade+"</td>"
+        var  edit = '<td><button type="button" class="text-success" data-bs-toggle="modal" data-bs-target="#editModal"  onclick=editarUni('+post[i].numero+')><i class="fa-solid fa-pen-to-square"></i></button></td>'
+        var  del = '<td><button type="submit" class="text-danger" onclick="deleteUni('+post[i].numero+')"><i class="fa-solid fa-trash"></i></button></td>'
+        
+
+
+        linha.innerHTML += nome;
+        linha.innerHTML += bairro;
+        linha.innerHTML += cid;
+        linha.innerHTML += edit;
+        linha.innerHTML += del;
+        document.getElementById("tableUnidade").appendChild(linha);
+    }
+    
+    });
 
 
 

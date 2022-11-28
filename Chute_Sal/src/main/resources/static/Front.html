@@ -267,6 +267,24 @@
                     </div>
                   </div>
 
+                  <!-- ------------------ Jogadores ----------------------  -->
+
+                  <hr>
+                  <div class="jog mt-4">
+                    <h5>Jogadores</h5>
+                    <table class="table table-striped" >
+                      <tbody id="tableJogador">
+                        <tr class="table-dark">
+                          <th class="inic">Nome</th>
+                          <th>Apelido</th>
+                          <th>Time</th>
+                          <th></th>
+                          <th class="fim">      </th>
+                        </tr>
+                        
+                    </tbody>
+                    </table>
+                  </div>
 
                 </div>
             </li>
@@ -317,16 +335,16 @@
                                 </select>
 
                                 <label for="dataJogo">data</label> 
-                                <input class="inputform" type="date"  id="dataJogo" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                <input class="inputform" type="date" id="dataJogo" size="30" maxlength="100" required autofocus placeholder="__:__">
                                 
                                 <label for="horaJogo">hora</label> 
                                 <input class="inputform" type="text"  id="horaJogo" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
                                 
                                 <label for="pont1">Pontos do Time 1</label> 
-                                <input class="inputform" type="text"  id="pont1" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                <input class="inputform" type="number"  id="pont1" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
                                 
                                 <label for="pont2">Pontos do Time 2</label> 
-                                <input class="inputform" type="text"  id="pont2" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                <input class="inputform" type="number"  id="pont2" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
                                 
                                 <label for="vencedor">Vencedor</label> 
                                 <select id="vencedor" class="form-select form-select-sm" aria-label=".form-select-sm example" >
@@ -346,23 +364,148 @@
                 </div>
             </li>
             <li>
+              <!-- ------------------------Unidade ---------------------------->
                 <input type="radio" name="tabs" class="rd_tab" id="tab4">
                 <label for="tab4" class="tab_label">Unidade</label>
                 <div class="tab-content">
-                    <h2>Unidade</h2>
-                    <article>
-                 <form action="destino.html" method="post">
-                 <label for="time">Cadastrar Unidade</label> 
-                 <input type="text" name="cadastrar" id="cadastrar" size="30" maxlength="100" required autofocus placeholder=" Insira o nome da unidade">
-        
-                 <label for="time">Endereço</label> 
-                 <input type="text" name="endereco" id="endereco" size="30" maxlength="100" required autofocus placeholder=" Insira o endereço">
-                
-                 <button type="button" onclick="alert('Dados Enviado com sucesso')" class="estilo">Cadastrar</button><br><br>
-                
-                  </form>
-                    </article>
-                </div>
+                  <table class="table table-striped mt-4" >
+                    <tbody id="tableUnidade">
+                      <tr class="table-dark">
+                        <th class="inic">Nome</th>
+                        <th>Cidade</th>
+                        <th>Estado</th>
+                        <th></th>
+                        <th class="fim">      </th>
+                      </tr> 
+                  </tbody>
+                  </table>
+
+                  <button type="button" class="btn btn-primary mt-2 novoc fw-bold" data-bs-toggle="modal" data-bs-target="#novaUnidade">
+                    Nova Unidade
+                  </button>
+
+
+
+
+
+
+                  <div class="modal fade" id="novaUnidade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Nova Unidade</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!--Formulario de cadastro unidade (modal)-->
+                        
+                            <form>
+                                <label for="nome">Nome</label> 
+                                <input class="inputform" type="text" id="nomeUni" size="30" maxlength="100" required autofocus >
+
+                                <label for="nome">Logadouro</label> 
+                                <input class="inputform" type="text" id="log" size="30" maxlength="100" required autofocus >
+                                
+                               
+                                <label for="dataJogo">Numero</label> 
+                                <input class="inputform" type="text" id="num" size="30" maxlength="100" required autofocus >
+                                
+                                <label for="dataJogo">Bairro</label> 
+                                <input class="inputform" type="text" id="bairro" size="30" maxlength="100" required autofocus >
+                                
+                                <label for="dataJogo">Cidade</label> 
+                                <input class="inputform" type="text" id="cid" size="30" maxlength="100" required autofocus >
+                                
+                                <label for="dataJogo">Estado</label> 
+                                <input class="inputform" type="text" id="est" size="30" maxlength="100" required autofocus >
+                            
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                          <button type="submit" class="btn btn-success" onclick="cadastrarUnidade()">Cadastrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+            </li>
+            <li>
+              <!-- ------------------------Jogador ---------------------------->
+                <input type="radio" name="tabs" class="rd_tab" id="tab4">
+                <label for="tab4" class="tab_label">Jogador</label>
+                <div class="tab-content">
+                  <table class="table table-striped mt-4" >
+                    <tbody id="tableUnidade">
+                      <tr class="table-dark">
+                        <th class="inic">Nome</th>
+                        <th>Cidade</th>
+                        <th>Estado</th>
+                        <th></th>
+                        <th class="fim">      </th>
+                      </tr> 
+                  </tbody>
+                  </table>
+
+                  <button type="button" class="btn btn-primary mt-2 novoc fw-bold" data-bs-toggle="modal" data-bs-target="#novaUnidade">
+                    Nova Unidade
+                  </button>
+
+
+
+
+
+
+                  <div class="modal fade" id="novaUnidade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Nova Unidade</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!--Formulario de cadastro unidade (modal)-->
+                        
+                            <form>
+                                <label for="nome">Nome</label> 
+                                <input class="inputform" type="text" id="nomeUni" size="30" maxlength="100" required autofocus >
+
+                                <label for="nome">Logadouro</label> 
+                                <input class="inputform" type="text" id="log" size="30" maxlength="100" required autofocus >
+                                
+                               
+                                <label for="dataJogo">Numero</label> 
+                                <input class="inputform" type="text" id="num" size="30" maxlength="100" required autofocus >
+                                
+                                <label for="dataJogo">Bairro</label> 
+                                <input class="inputform" type="text" id="bairro" size="30" maxlength="100" required autofocus >
+                                
+                                <label for="dataJogo">Cidade</label> 
+                                <input class="inputform" type="text" id="cid" size="30" maxlength="100" required autofocus >
+                                
+                                <label for="dataJogo">Estado</label> 
+                                <input class="inputform" type="text" id="est" size="30" maxlength="100" required autofocus >
+                            
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                          <button type="submit" class="btn btn-success" onclick="cadastrarUnidade()">Cadastrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
             </li>
         </ul>
     </nav>

@@ -1,45 +1,45 @@
 
 
+
 function cadastrar(){
 
-let nomeForm = document.getElementById('nome').value;
-let apelidoForm = document.getElementById('apelido').value;
-let telefoneForm = document.getElementById('telefone').value;
-let dt_nascForm = document.getElementById('dt_nasc').value;
-let usuarioForm = document.getElementById('usuario').value;
-let senhaForm = document.getElementById('senha').value;
-
-
-console.log(nomeForm)
-
-let jogador =  {
-    "nome": nomeForm,
-    "apelido": apelidoForm,
-    "telefone": telefoneForm,
-    "dt_nasc": dt_nascForm,
-    "escalado": false,
-    "usuario": usuarioForm,
-    "senha": senhaForm
-}
-
-console.log(jogador)
-
-
-let par = {
-    method: "POST",
-    body: JSON.stringify(jogador),
-    headers: {"Content-type": "application/json"}
+    let nomeForm = document.getElementById('nome').value;
+    let apelidoForm = document.getElementById('apelido').value;
+    let telefoneForm = document.getElementById('telefone').value;
+    let dt_nascForm = document.getElementById('dt_nasc').value;
+    let usuarioForm = document.getElementById('usuario').value;
+    let senhaForm = document.getElementById('senha').value;
+    
+    
+    console.log(nomeForm)
+    
+    let jogador =  {
+        "nome": nomeForm,
+        "apelido": apelidoForm,
+        "telefone": telefoneForm,
+        "dt_nasc": dt_nascForm,
+        "escalado": false,
+        "usuario": usuarioForm,
+        "senha": senhaForm
     }
+    console.log(jogador)
+    
+    
+    let par = {
+        method: "POST",
+        body: JSON.stringify(jogador),
+        headers: {"Content-type": "application/json"}
+        }
+    
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/jogador/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
 
-fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/jogador/', par)
-.then(response => response.json())
-.then(json => console.log(json))
-.catch(err => console.log(err));
-
-
-
-
+    alert("Jogador Cadastrado!")
+s
+    
 }
+
+
+
 
 
 
@@ -82,7 +82,7 @@ function campeonatos(){
         headers: {"Content-type": "application/json"}
         }
     
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/campeonatos/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/campeonatos/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
 
     alert("Campeonato Cadastrado!")
     window.location.reload();
@@ -95,7 +95,7 @@ function campeonatos(){
 /*deletar campeonato*/
 function deleteCampeonato(id){
     
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/campeonatos/'+id, { method: 'DELETE' })
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/campeonatos/'+id, { method: 'DELETE' })
     .then();
     alert('Campeonato Deletado')
     window.location.reload();
@@ -104,7 +104,7 @@ function deleteCampeonato(id){
 function editar(id){
     let editid = id
 
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/campeonatos/'+editid)
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/campeonatos/'+editid)
     .then(data => {
     return data.json();
     })
@@ -165,7 +165,7 @@ function editar(id){
         headers: {"Content-type": "application/json"}
         }
         console.log(par)
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/campeonatos/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/campeonatos/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
 
     alert("Campeonato Atualizado!")
     window.location.reload();
@@ -208,7 +208,7 @@ function cadastrarTime(){
         headers: {"Content-type": "application/json"}
         }
     
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/time/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/time/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
 
     alert("Time Cadastrado!")
     window.location.reload();
@@ -220,7 +220,7 @@ function cadastrarTime(){
 
 function deleteTime(id){
     
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/time/'+id, { method: 'DELETE' })
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/time/'+id, { method: 'DELETE' })
     .then();
     alert('Time Deletado')
     window.location.reload();
@@ -229,7 +229,7 @@ function deleteTime(id){
 function editTime(id){
     let editid = id
 
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/time/'+editid)
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/time/'+editid)
     .then(data => {
     return data.json();
     })
@@ -251,10 +251,11 @@ function editTime(id){
         "id" : editid,
         "nome" : nome,
         "campeonato": { 
-            "id": '1'
+            "id": camp
         }
 
     }
+
     
 
     
@@ -265,7 +266,7 @@ function editTime(id){
         headers: {"Content-type": "application/json"}
         }
         console.log(time)
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/time/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/time/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
 
     alert("Time Atualizado!")
     window.location.reload();
@@ -281,7 +282,7 @@ function editTime(id){
 /* ------------------------------  jogo --------------------------*/
 function deleteJogo(id){
     
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/jogo/'+id, { method: 'DELETE' })
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/jogo/'+id, { method: 'DELETE' })
     .then();
     alert('Jogo Deletado')
     window.location.reload();
@@ -295,45 +296,95 @@ function cadastrarJogo(){
     let hora = document.getElementById('horaJogo').value;
     let pont1 = document.getElementById('pont1').value;
     let pont2 = document.getElementById('pont2').value;
-    let vencedor = document.getElementById('pont2').value;
+    let vencedor = document.getElementById('vencedor').value;
 
     
 
     
-    let time =  {
+    let jogo =  {
         "time1": {
-            "id" : time1
+            "id" : parseInt(time1)
         },
         "time2": {
-            "id" : time2
+            "id" : parseInt(time2)
         },
         "pontTime1": pont1,
         "pontTime2": pont2,
         "data": data,
         "hora": hora,
         "vencedor": {
-            "id" : vencedor
+            "id" : parseInt(vencedor)
         },
         "campeonato": null,
         "status": null
     }
-    console.log(time)
+    console.log(jogo)
     
 
     let par = {
         method: "POST",
-        body: JSON.stringify(time),
+        body: JSON.stringify(jogo),
         headers: {"Content-type": "application/json"}
         }
     
-    fetch('http://ec2-44-203-40-214.compute-1.amazonaws.com:8081/time/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/jogo/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
 
-    alert("Time Cadastrado!")
+    alert("Jogo Cadastrado!")
+ 
+    window.location.reload();
+    
+
+    
+}
+
+
+
+
+/*    ----------------- Unidade ----------------- */
+
+/*deletar campeonato*/
+function deleteUni(id){
+    
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/unidade/'+id, { method: 'DELETE' })
+    .then();
+    alert('Unidade Deletada!')
+    window.location.reload();
+}
+
+function cadastrarUnidade(){
+    let nome = document.getElementById('nomeUni').value;
+    let logadouro = document.getElementById('log').value;
+    let nro = document.getElementById('num').value;
+    let bairro = document.getElementById('bairro').value;
+    let cid = document.getElementById('cid').value;
+    let est = document.getElementById('est').value;
+
+    
+
+    
+    let unidade =  {
+        "nome": nome,
+        "logadouro": logadouro,
+        "nro_endereco": nro,
+        "bairro": bairro,
+        "cidade": cid,
+        "estado": est
+    }
+
+    let par = {
+        method: "POST",
+        body: JSON.stringify(unidade),
+        headers: {"Content-type": "application/json"}
+        }
+    
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/unidade/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+
+    alert("Unidade Cadastrada !")
     window.location.reload();
     
     
 
-    
+
 }
 
     
@@ -396,7 +447,7 @@ function jogo(){
         headers: {"Content-type": "application/json"}
         }
     
-    fetch('http://ec2-3-93-76-13.compute-1.amazonaws.com:8081/jogo/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/jogo/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
     
 }
 
@@ -425,7 +476,7 @@ function unidade(){
         headers: {"Content-type": "application/json"}
         }
     
-    fetch('http://ec2-3-93-76-13.compute-1.amazonaws.com:8081/unidade/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/unidade/', par).then(response => response.json()).then(json => console.log(json)).catch(err => console.log(err));
     
 }
 
