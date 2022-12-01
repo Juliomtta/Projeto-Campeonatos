@@ -33,6 +33,8 @@ public class Jogador {
     private String usuario;
     private String senha;
     @ManyToOne
-    private Time time;  
+    private Time time; 
+    @ManyToOne
+    private Campeonato campeonato;
 
 }
