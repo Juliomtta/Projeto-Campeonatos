@@ -2,6 +2,7 @@ package com.Mackenzie.Chute_Sal.Controllers;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -35,6 +36,12 @@ public class jogadorController {
     @GetMapping("/")
     public List<Jogador> jogador(){
         return jogadorRepository.findAll();
+    }
+    
+    @GetMapping("/{id}")
+    public Optional<Jogador> campeonato(@PathVariable("id") long id){
+
+        return jogadorRepository.findById(id);
     }
 
     @PostMapping("/")
