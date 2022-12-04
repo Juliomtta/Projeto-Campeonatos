@@ -15,9 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Mackenzie.Chute_Sal.Models.Quadra;
 import com.Mackenzie.Chute_Sal.Repositories.QuadraRepository;
+import java.util.Optional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 @RestController
 @RequestMapping("/quadra")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class QuadraController {
     @Autowired
     QuadraRepository quadraRepository;
@@ -25,6 +30,12 @@ public class QuadraController {
     @GetMapping("/")
     public List<Quadra> quadra(){
         return quadraRepository.findAll();
+    }
+    
+    @GetMapping("/{id}")
+    public Optional<Quadra> quadra(@PathVariable("id") long id){
+
+        return quadraRepository.findById(id);
     }
 
     @PostMapping("/")
