@@ -44,11 +44,12 @@ public class QuadraController {
         return ResponseEntity.ok().body(quadra);
     }
 
-    @DeleteMapping("/")
-    public void deleteQuadra(@RequestBody Long id){
-
-        quadraRepository.deleteById(id);        
+   @DeleteMapping("/{id}")
+    public void deleteQuadra(@PathVariable("id") Long Id){
+        quadraRepository.deleteById(Id);
+           
     }
+
 
     @PutMapping("/")
     public ResponseEntity atualizaQuadra(@RequestBody Quadra quadra){
