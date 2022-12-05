@@ -42,10 +42,15 @@ function consultar(){
         sel.innerHTML += option
         var selE = document.getElementById("menuC");
         selE.innerHTML += option
+        var selJ = document.getElementById('campJoga')
+        selJ.innerHTML += option
         
     }   
     
     });
+
+
+
 
 
 
@@ -61,18 +66,20 @@ function consultar(){
 
 
 
-        var time = document.createElement("li")
-        time.className = "list-group-item mt-2"
-        var  nome = '<button class="btn">'+post[i].nome+'</button>'
-        var  edit = '<button type="button" class="text-success butt" data-bs-toggle="modal" data-bs-target="#editTime" onclick="editTime('+post[i].id+')" ><i class="fa-solid fa-pen-to-square"></i></button>'
-        var  del = '<button type="submit" class="text-danger butt" onclick="deleteTime('+post[i].id+')"><i class="fa-solid fa-trash"></i></button>'
+        var time = document.createElement("tr")
+        
+        var  nome = '<td>'+post[i].nome+'</td>'
+        var camp = '<td>'+post[i].campeonato.nome+'</td>'
+        var  edit = '<td><button type="button" class="text-success butt" data-bs-toggle="modal" data-bs-target="#editTime" onclick="editTime('+post[i].id+')" ><i class="fa-solid fa-pen-to-square"></i></button></td>'
+        var  del = '<td><button type="submit" class="text-danger butt" onclick="deleteTime('+post[i].id+')"><i class="fa-solid fa-trash"></i></button></td>'
         
 
 
         time.innerHTML += nome;
+        time.innerHTML += camp;
         time.innerHTML += edit;
         time.innerHTML += del;
-        document.getElementById("times").appendChild(time);
+        document.getElementById("tableTime").appendChild(time);
 
         var option = '<option value="'+post[i].id+'">'+post[i].nome+'</option>';
         var time1 = document.getElementById("time1");
@@ -81,6 +88,10 @@ function consultar(){
         time2.innerHTML += option
         var vencedor = document.getElementById("vencedor");
         vencedor.innerHTML += option
+        
+
+        var joga = document.getElementById("timeJoga");
+        joga.innerHTML += option
 
 
     }
@@ -99,9 +110,9 @@ function consultar(){
         
         var linha = document.createElement("tr");
         var  nome = "<td>"+post[i].nome+"</td>"
-        var  apelido = "<td>"+post[i].nome+"</td>"
-        var  time = "<td>"+post[i].hora+"</td>"
-        var  edit = '<td><button type="button" class="text-success" data-bs-toggle="modal" data-bs-target="#editModal"  onclick=editarJogador('+post[i].id+')><i class="fa-solid fa-pen-to-square"></i></button></td>'
+        var  apelido = "<td>"+post[i].apelido+"</td>"
+        var  time = "<td>"+post[i].time.nome+"</td>"
+        var  edit = '<td><button type="button" class="text-success" data-bs-toggle="modal" data-bs-target="#editJogador"  onclick=editarJogador('+post[i].id+','+post[i].campeonato.id+')><i class="fa-solid fa-pen-to-square"></i></button></td>'
         var  del = '<td><button type="submit" class="text-danger" onclick="deleteJogador('+post[i].id+')"><i class="fa-solid fa-trash"></i></button></td>'
         
 
@@ -145,7 +156,7 @@ function consultar(){
         var  hora = "<td>"+post[i].hora+"</td>"
         var  data = "<td>"+post[i].data+"</td>"
         var  vencedor = "<td>"+post[i].vencedor.nome+"</td>"
-        var  edit = '<td><button type="button" class="text-success" data-bs-toggle="modal" data-bs-target="#editModal"  onclick=editar('+post[i].id+')><i class="fa-solid fa-pen-to-square"></i></button></td>'
+        var  edit = '<td><button type="button" class="text-success" data-bs-toggle="modal" data-bs-target="#editJogo"  onclick=editar('+post[i].id+')><i class="fa-solid fa-pen-to-square"></i></button></td>'
         var  del = '<td><button type="submit" class="text-danger" onclick="deleteJogo('+post[i].id+')"><i class="fa-solid fa-trash"></i></button></td>'
         
 
@@ -177,9 +188,16 @@ function consultar(){
         var  nome = "<td>"+post[i].nome+"</td>"
         var  bairro = "<td>"+post[i].bairro+"</td>"
         var  cid = "<td>"+post[i].cidade+"</td>"
-        var  edit = '<td><button type="button" class="text-success" data-bs-toggle="modal" data-bs-target="#editModal"  onclick=editarUni('+post[i].numero+')><i class="fa-solid fa-pen-to-square"></i></button></td>'
+        var  edit = '<td><button type="button" class="text-success" data-bs-toggle="modal" data-bs-target="#editarUni"  onclick=editarUni('+post[i].numero+')><i class="fa-solid fa-pen-to-square"></i></button></td>'
         var  del = '<td><button type="submit" class="text-danger" onclick="deleteUni('+post[i].numero+')"><i class="fa-solid fa-trash"></i></button></td>'
         
+        var opcao = document.createElement("option");
+        opcao.innerHTML = post[i].nome;
+        opcao.value = post[i].numero;
+        document.getElementById("uniCamp").appendChild(opcao)
+
+
+
 
 
         linha.innerHTML += nome;
@@ -188,11 +206,61 @@ function consultar(){
         linha.innerHTML += edit;
         linha.innerHTML += del;
         document.getElementById("tableUnidade").appendChild(linha);
+
+
+
+        let un = document.getElementById('uniQ')
+        var option = '<option value="'+post[i].numero+'">'+post[i].nome+'</option>';
+       
+       
+        
+
+
+        un.innerHTML += option
+
+        
     }
     
     });
 
 
+
+
+    /*----------------------Quadra ------------*/
+
+    fetch('http://ec2-3-94-80-209.compute-1.amazonaws.com:8081/quadra/')
+    .then(data => {
+    return data.json();
+    })
+    .then(post => {
+    for(var i=0; i<post.length; i++){
+
+        
+        var linha = document.createElement("tr");
+        var  nome = "<td>"+post[i].nome+"</td>"
+        var  unidade = "<td>"+post[i].unidade.nome+"</td>"
+        var  edit = '<td><button type="button" class="text-success" data-bs-toggle="modal" data-bs-target="#editModal"  onclick=editarQuadra('+post[i].id+')><i class="fa-solid fa-pen-to-square"></i></button></td>'
+        var  del = '<td><button type="submit" class="text-danger" onclick="deleteQuadra('+post[i].id+')"><i class="fa-solid fa-trash"></i></button></td>'
+        
+
+
+        linha.innerHTML += nome;
+        linha.innerHTML += unidade;
+        linha.innerHTML += edit;
+        linha.innerHTML += del;
+        document.getElementById("tableQuadra").appendChild(linha);
+
+
+        var option = '<option value="'+post[i].id+'">'+post[i].nome+'</option>';
+        let q = document.getElementById('quadras');
+        q.innerHTML += option
+
+
+
+        
+    }
+    
+    });
 
 
 

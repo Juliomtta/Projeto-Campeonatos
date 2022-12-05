@@ -16,7 +16,8 @@
  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="CSS/styleCad.css">
     <link rel="stylesheet" type="text/css" href="CSS/style.css"> -->
-    <script src="JS/api.js"></script>
+    <script src="JS/api.js" defer
+    ></script>
 
 </head>
 
@@ -84,29 +85,34 @@
                             
                                 <form>
                                     <label for="nome">Nome do Campeonato</label> 
-                                    <input class="inputform" type="text" name="nomeCamp" id="nomeCamp" size="30" maxlength="100" required autofocus placeholder=" Insira o nome">
+                                    <input class="inputform form_control" type="text" name="nomeCamp" id="nomeCamp" size="30" maxlength="100" required autofocus placeholder=" Insira o nome">
                                     
                                     <p>Período de incrições:</p>
                                     <div class="flex">
                                         
-                                        <p><input type="date" name="dataInscricao" id="dataInscricao" size="30" maxlength="60"></p>
+                                        <p><input  class="form_control" type="date" name="dataInscricao" id="dataInscricao" size="30" maxlength="60"></p>
                 
                                         <label for="dataInscricao">Até:</label> 
-                                        <p><input type="date" name="dataFimInscricao" id="dataFimInscricao" size="30" maxlength="60" class></p>
+                                        <p><input class="form_control" type="date" name="dataFimInscricao" id="dataFimInscricao" size="30" maxlength="60" class></p>
                                     
                                     </div>
 
                                     <p>Período de jogos:</p>
                                     <div class="flex">
                                     
-                                    <p><input type="date" name="dataInicJogos" id="dataInicJogos" size="30" maxlength="60"></p>
+                                    <p><input class="form_control" type="date" name="dataInicJogos" id="dataInicJogos" size="30" maxlength="60"></p>
             
                                     <label for="data">Até:</label> 
-                                    <p><input type="date" name="dataFimJogos" id="dataFimJogos" size="30" maxlength="60"></p>
+                                    <p><input class="form_control" type="date" name="dataFimJogos" id="dataFimJogos" size="30" maxlength="60"></p>
                                     
                                     </div>
                                     <label for="data">Data da Divulgação:</label> 
-                                    <input type="date" name="dataDivulgacao" id="dataDivulgacao" sizedata="30" maxlength="60" class="inputform">
+                                    <input type="date"class="form_control"  name="dataDivulgacao" id="dataDivulgacao" sizedata="30" maxlength="60" class="inputform">
+
+                                    <label for="uniCamp">Unidade:</label> 
+                                    <select id="uniCamp" class="form-select w-50">
+
+                                    </select>
                                     
                         
                             </form>
@@ -201,15 +207,28 @@
                 <input type="radio" name="tabs" class="rd_tab" id="tab2">
                 <label for="tab2" class="tab_label">Time</label>
                 <div class="tab-content ">
+
+
+                  <div class="time mt-4">
+                    <table class="table table-striped text-center" >
+                      <tbody id="tableTime">
+                        <tr class="table-dark">
+                          <th class="inic">Time</th>
+                          <th>Campeonato</th>
+                          <th></th>
+                          <th class="fim">      </th>
+                        </tr>
+                        
+                    </tbody>
+                    </table>
+                  </div>
                   <ul class="list-group text-center" id="times">
-                    <li class="list-group-item mt-2">
-                      
-                    </li>
+                    
                     <div class="modal fade" id="editTime" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Novo Campeonato</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Novo Time</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
@@ -235,7 +254,7 @@
                     </div>
                   </ul>
                   
-                  <button type="button" class="btn btn-primary mt-2 novoc fw-bold" data-bs-toggle="modal" data-bs-target="#novoTime">
+                  <button type="button" class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#novoTime">
                     Novo Time
                   </button>
                   <div class="modal fade" id="novoTime" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -270,7 +289,7 @@
                   <!-- ------------------ Jogadores ----------------------  -->
 
                   <hr>
-                  <div class="jog mt-4">
+                  <div class="jog mt-4 text-center">
                     <h5>Jogadores</h5>
                     <table class="table table-striped" >
                       <tbody id="tableJogador">
@@ -284,6 +303,54 @@
                         
                     </tbody>
                     </table>
+                    
+                    <div class="modal fade" id="editJogador" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Jogador</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <!--Formulario de cadastro de time (modal)-->
+                          
+                              <form>
+                                  <label for="nomeJoga">Nome</label> 
+                                  <input class="inputform" type="text"  id="nomeJoga" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                  
+                                  <label for="ape">Apelido</label> 
+                                  <input class="inputform" type="text"  id="ape" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                  
+                                  <label for="ape">telefone</label> 
+                                  <input class="inputform" type="tel"  id="tel" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                  
+                                  <label for="ape">Data de nascimento</label> 
+                                  <input class="form-select w-50" type="date"  id="dtJoga" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                  
+
+                                  <label for="nome">Time</label> 
+                                  <select id="timeJoga" class="form-select w-50" aria-label=".form-select-sm example" >
+                                  
+                                  </select>
+                                  <label for="nome">Campeonato</label> 
+                                  <select id="campJoga" class="form-select w-50" aria-label=".form-select-sm example" >
+                                      <option></option>
+                                  </select>
+                              </form>
+  
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" id="salvarJogador" class="btn btn-success">Salvar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+
                   </div>
 
                 </div>
@@ -347,7 +414,12 @@
                                 <input class="inputform" type="number"  id="pont2" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
                                 
                                 <label for="vencedor">Vencedor</label> 
-                                <select id="vencedor" class="form-select form-select-sm" aria-label=".form-select-sm example" >
+                                <select id="vencedor" class="form-select w-50" aria-label=".form-select-sm example" >
+                                 <option></option>
+                                </select>
+
+                                <label for="quadra">Quadra</label> 
+                                <select id="quadras" class="form-select w-50" aria-label=".form-select-sm example" >
                                  <option></option>
                                 </select>
                             </form>
@@ -361,19 +433,85 @@
                     </div>
                   </div>
 
+
+                  <div class="modal fade" id="editJogo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Novo Campeonato</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!--Formulario de cadastro de Jogos (modal)-->
+                        
+                            <form>
+                                <label for="nome">Nome do Time 1</label> 
+                                <select id="time12" class="form-select form-select-sm" aria-label=".form-select-sm example" >
+                                  <option></option>
+                                </select>
+
+                                <label for="nome">Nome do Time 2</label> 
+                                <select id="time22" class="form-select form-select-sm" aria-label=".form-select-sm example" >
+                                 <option></option>
+                                </select>
+
+                                <label for="dataJogo">data</label> 
+                                <input class="inputform" type="date" id="dataJogo2" size="30" maxlength="100" required autofocus placeholder="__:__">
+                                
+                                <label for="horaJogo">hora</label> 
+                                <input class="inputform" type="text"  id="horaJogo2" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                
+                                <label for="pont1">Pontos do Time 1</label> 
+                                <input class="inputform" type="number"  id="pont12" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                
+                                <label for="pont2">Pontos do Time 2</label> 
+                                <input class="inputform" type="number"  id="pont22" size="30" maxlength="100" required autofocus placeholder=" Insira o nome do time">
+                                
+                                <label for="vencedor">Vencedor</label> 
+                                <select id="vencedor2" class="form-select w-50" aria-label=".form-select-sm example" >
+                                 <option></option>
+                                </select>
+
+                                <label for="quadra">Quadra</label> 
+                                <select id="quadras2" class="form-select w-50" aria-label=".form-select-sm example" >
+                                 <option></option>
+                                </select>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                          <button type="submit" class="btn btn-success" onclick="cadastrarJogo()">Cadastrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
             </li>
             <li>
               <!-- ------------------------Unidade ---------------------------->
                 <input type="radio" name="tabs" class="rd_tab" id="tab4">
-                <label for="tab4" class="tab_label">Unidade</label>
-                <div class="tab-content">
-                  <table class="table table-striped mt-4" >
+                <label for="tab4" class="tab_label">Unidade </label>
+                <div class="tab-content ">
+                  <table class="table table-striped mt-4 text-center" >
                     <tbody id="tableUnidade">
                       <tr class="table-dark">
                         <th class="inic">Nome</th>
+                        <th>Bairro</th>
                         <th>Cidade</th>
-                        <th>Estado</th>
                         <th></th>
                         <th class="fim">      </th>
                       </tr> 
@@ -383,9 +521,91 @@
                   <button type="button" class="btn btn-primary mt-2 novoc fw-bold" data-bs-toggle="modal" data-bs-target="#novaUnidade">
                     Nova Unidade
                   </button>
+                  <hr>
+                    <table class="table table-striped mt-4 text-center" >
+                      <tbody id="tableQuadra">
+                        <tr class="table-dark">
+                          <th class="inic">Identificador</th>
+                          <th>Unidade</th>
+                          
+                          <th></th>
+                          <th class="fim">      </th>
+                        </tr> 
+                    </tbody>
+                    </table>
 
+                    <div class="modal fade" id="editarUni" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Editar unidade</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <!--Formulario de cadastro de time (modal)-->
+                          
+                              <form>
+                                  <label for="nome">Nome</label> 
+                                  <input class="inputform" type="text"  id="nomeUnii" size="30" maxlength="100" required autofocus placeholder=" ">
+                                  
+                                  <label for="nome">Logadouro</label> 
+                                  <input class="inputform" type="text"  id="logaUnii" size="30" maxlength="100" required autofocus placeholder=" ">
+                                  
+                                  <label for="nome">Numero</label> 
+                                  <input class="inputform" type="text"  id="numeroUnii" size="30" maxlength="100" required autofocus placeholder=" ">
+                                  
+                                  <label for="nome">Bairro</label> 
+                                  <input class="inputform" type="text"  id="bairroUnii" size="30" maxlength="100" required autofocus placeholder=" ">
+                                  
+                                  <label for="nome">Cidade</label> 
+                                  <input class="inputform" type="text"  id="cidadeUnii" size="30" maxlength="100" required autofocus placeholder=" ">
+                                  
+                                  <label for="nome">Estado</label> 
+                                  <input class="inputform" type="text"  id="estadoUnii" size="30" maxlength="100" required autofocus placeholder=" ">
+                          
+                              </form>
+  
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" id="salvarUni" class="btn btn-success">Salvar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-primary mt-2 novoc fw-bold" data-bs-toggle="modal" data-bs-target="#novaQuadra">
+                      Nova Quadra
+                    </button>
 
+                    <div class="modal fade" id="novaQuadra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Nova Quadra</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <!--Formulario de cadastro unidade (modal)-->
+                          
+                              <form>
+                                  <label for="nome">Nome</label> 
+                                  <input class="inputform" type="text" id="nomeUniii" size="30" maxlength="100" required autofocus >
+                                  
+                                  <label for="nome">Unidade</label>
+                                  <select id="uniQ" class="form-select form-select-sm w-50" aria-label=".form-select-sm example" >
+                                    <option selected></option>
+                                   </select>
 
+                              </form>
+  
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-success" onclick="cadastrarQuadra()">Cadastrar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
 
 
@@ -453,9 +673,10 @@
                   </table>
 
                   <button type="button" class="btn btn-primary mt-2 novoc fw-bold" data-bs-toggle="modal" data-bs-target="#novaUnidade">
-                    Nova Unidade
+                    Novo Jogador
                   </button>
-
+                   
+                 
 
 
 
@@ -503,6 +724,9 @@
                   </div>
 
 
+                  
+                 
+                  
 
 
 
