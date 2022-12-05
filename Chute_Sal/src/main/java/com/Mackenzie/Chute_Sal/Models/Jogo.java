@@ -37,6 +37,8 @@ public class Jogo {
     private Time vencedor;
     @ManyToOne
     private Campeonato campeonato;
+    @ManyToOne
+    private Quadra quadra;
 
 
 
